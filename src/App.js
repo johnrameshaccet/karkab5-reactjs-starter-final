@@ -13,9 +13,11 @@ import {
 import { UserProvider } from './UserContext';
 
 function App() {
-  const [fname,setName] = useState("ramesh");
+  const [fname,setName] = useState("Guest");
 
-  const user = { fname,setName };
+  const [isLogged,setLogged] = useState(false);
+
+  const user = { fname,setName ,isLogged,setLogged};
 
   return (
     <Router>
@@ -23,7 +25,7 @@ function App() {
         <div className="App">
           <Header authorName={fname} msg="Hi hello" />
           <Switch>
-              <Route path="/" exact >
+              <Route path="/login" exact >
                 <Login />
               </Route>
               <Route path="/home" exact >

@@ -3,12 +3,14 @@ import {
 } from "react-router-dom";
 import React, { useContext } from 'react';  
 import UserContext from './UserContext';
-
+import {useHistory} from 'react-router-dom';
 
 function Header(props){
 
   const user = useContext(UserContext);
-    console.log("value",user);
+  const history = useHistory();
+    //user.setName("Dhaya")
+    //console.log("value",user);
 
 
 
@@ -22,9 +24,9 @@ function Header(props){
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">Comorins by {props.authorName}</a>
+              <a className="navbar-brand" href="#">Comorins by {user.fname}</a>
             </div>
-            <button onClick={()=>{user.setName("perumal")}}>Click</button>
+            {user.isLogged && 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
                 <li>
@@ -52,7 +54,8 @@ function Header(props){
                 <button type="submit" className="btn btn-default">Submit</button>
               </form>
               <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+              {!user.isLogged && <li><Link to="/login">Login</Link></li>}
+                <li><a onClick={()=> {user.setLogged(false); history.push('/login')} }>Logout</a></li>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                   <ul className="dropdown-menu">
@@ -64,7 +67,7 @@ function Header(props){
                   </ul>
                 </li>
               </ul>
-            </div>
+            </div> }
           </div>
         </nav>
     );
