@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom';
 function Header(props){
 
   const user = useContext(UserContext);
+ 
   const history = useHistory();
     //user.setName("Dhaya")
     //console.log("value",user);
@@ -24,7 +25,7 @@ function Header(props){
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">Comorins by {user.fname}</a>
+              <a className="navbar-brand" href="#">Comorins by Ramesh</a>
             </div>
             {user.isLogged && 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,18 +35,7 @@ function Header(props){
                 </li>
                 <li><Link to="/about">About us</Link></li>
                 <li><Link to="/contact">Contact us</Link></li>
-                <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-                  <ul className="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" className="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" className="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
+                <li><Link to="/feed">Feed</Link></li>
               </ul>
               <form className="navbar-form navbar-left">
                 <div className="form-group">
@@ -54,7 +44,7 @@ function Header(props){
                 <button type="submit" className="btn btn-default">Submit</button>
               </form>
               <ul className="nav navbar-nav navbar-right">
-              {!user.isLogged && <li><Link to="/login">Login</Link></li>}
+              
                 <li><a onClick={()=> {user.setLogged(false); history.push('/login')} }>Logout</a></li>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
@@ -68,6 +58,7 @@ function Header(props){
                 </li>
               </ul>
             </div> }
+            {!user.isLogged && <ul className="nav navbar-nav navbar-right"><li><Link to="/login">Login</Link></li></ul>}
           </div>
         </nav>
     );
